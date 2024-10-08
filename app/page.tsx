@@ -1,7 +1,19 @@
+'use client';
+
 import Image from "next/image";
+import {useProduct} from '@salesforce/commerce-sdk-react'
+
 import styles from "./page.module.css";
 
 export default function Home() {
+  const query = useProduct({
+    parameters: {
+      id: '25592581M'
+    }
+  })
+
+  console.log(query.data)
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
