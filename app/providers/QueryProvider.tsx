@@ -1,6 +1,5 @@
 'use client'
 
-import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
 import {ReactNode} from 'react'
 import {CommerceApiProvider} from '@salesforce/commerce-sdk-react'
 // @ts-ignore
