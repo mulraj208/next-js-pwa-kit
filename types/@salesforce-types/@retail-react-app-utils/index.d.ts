@@ -176,7 +176,7 @@ declare module '@salesforce/retail-react-app/app/utils/product-utils' {
         _values: Record<string, string>
     ): Record<string, string>
 
-    export function getDisplayPrice(product: CommerceSDK.Product$0): {
+    export function getDisplayPrice(product: CommerceSDK.Product$0 | undefined): {
         basePrice: number | undefined
         discountPrice: number | null
     }

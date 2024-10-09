@@ -220,7 +220,7 @@ declare module '@salesforce/retail-react-app/app/hooks/use-wish-list' {
 // Einstein hook in @retail-react-app
 declare module '@salesforce/retail-react-app/app/hooks/use-derived-product' {
     export const useDerivedProduct: (
-        _product: CommerceSDK.Product$0,
+        _product: CommerceSDK.Product$0 | undefined,
         _isProductPartOfSet?: boolean
     ) => {
         showLoading: boolean
