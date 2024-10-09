@@ -130,6 +130,6 @@ export const useVariationAttributes = (product = {}, isProductPartOfSet = false)
                     })
                 }))
                 : [],
-        [product]
+        [isClient, variationAttributes, variationParams, product, existingParams, isProductPartOfSet]
     )
 }
