@@ -24,7 +24,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = props => {
                 viewType: ImageViewType.LARGE,
                 selectedVariationAttributes
             }),
-        [selectedVariationAttributes]
+        [imageGroups, selectedVariationAttributes]
     )
 
     const thumbnailImageGroup = useMemo(
@@ -33,7 +33,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = props => {
                 viewType: ImageViewType.SMALL,
                 selectedVariationAttributes
             }),
-        [selectedVariationAttributes]
+        [imageGroups, selectedVariationAttributes]
     )
 
     const heroImage = heroImageGroup?.images?.[selectedIndex]

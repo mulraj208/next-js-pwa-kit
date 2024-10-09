@@ -31,6 +31,7 @@ export default function ProductDetail({params}: { params: { productId: string } 
         inventoryMessage,
         stockLevel
     } = useDerivedProduct(product, isProductPartOfSet)
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const { basePrice, discountPrice } = getDisplayPrice(product)
     const isOutOfStock = stockLevel === 0
@@ -39,10 +40,9 @@ export default function ProductDetail({params}: { params: { productId: string } 
         <Flex bg="blackAlpha.50" direction={{base: 'column', lg: 'row'}} gap={8} p={8} justify="center" h="full">
             <Box h="auto" w="30rem">
                 {product ? (
-                    <ImageGallery
-                        imageGroups={product.imageGroups || []}
-                        selectedVariationAttributes={variationParams}
-                    />
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
+                    <ImageGallery imageGroups={product.imageGroups || []} selectedVariationAttributes={variationParams} />
                 ) : (
                     <ImageGallerySkeleton/>
                 )}

@@ -2,6 +2,7 @@
 
 import {ReactNode} from 'react'
 import {CommerceApiProvider} from '@salesforce/commerce-sdk-react'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import {withReactQuery} from '@salesforce/pwa-kit-react-sdk/ssr/universal/components/with-react-query'
 import config from '../../config/dw'
@@ -49,4 +50,4 @@ const options = {
     }
 }
 
-export default withReactQuery(QueryProvider, options)
+export default withReactQuery(QueryProvider as unknown as React.ReactElement, options) as unknown as React.FC<{ children: ReactNode; locals: unknown }>

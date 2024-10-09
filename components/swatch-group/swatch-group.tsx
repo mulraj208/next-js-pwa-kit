@@ -35,6 +35,8 @@ const SwatchGroup: React.FC<SwatchGroupProps> = (props: SwatchGroupProps) => {
           radioProps = { ...radioProps, isChecked: value === defaultValue }
 
           return (
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
             <Swatch href={href} image={image} key={value} {...radioProps}>
               {name}
             </Swatch>

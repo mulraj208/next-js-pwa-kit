@@ -32,6 +32,7 @@ const Breadcrumbs: React.FC<BreadcrumbProps> = (props) => {
   })
 
   if (isCategoryError) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const errorStatus = (categoryError as CommerceSDK.CategoryError)?.response?.status
     switch (errorStatus) {

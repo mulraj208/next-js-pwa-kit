@@ -9579,6 +9579,7 @@ declare namespace CommerceSDK {
         name?: string
         orderable?: boolean
         value: string
+        href: string
     } & {
         [key: string]: unknown
     }
