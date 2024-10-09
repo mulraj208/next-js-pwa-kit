@@ -5,6 +5,8 @@ import {CommerceApiProvider} from '@salesforce/commerce-sdk-react'
 // @ts-ignore
 import {withReactQuery} from '@salesforce/pwa-kit-react-sdk/ssr/universal/components/with-react-query'
 import config from '../../config/dw'
+import {ChakraProvider} from "@chakra-ui/react";
+import { themeDefault } from '@/theme'
 
 function QueryProvider({children}: { children: ReactNode }) {
     return (
@@ -18,7 +20,9 @@ function QueryProvider({children}: { children: ReactNode }) {
             locale="en-US"
             currency="USD"
         >
-            {children}
+            <ChakraProvider theme={themeDefault}>
+                {children}
+            </ChakraProvider>
         </CommerceApiProvider>
     )
 }
