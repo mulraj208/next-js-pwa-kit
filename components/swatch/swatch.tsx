@@ -21,8 +21,6 @@ const Swatch = (props: SwatchProps) => {
     const radioProps = getRadioProps()
     const input = getInputProps()
 
-    console.log(href)
-
     const handleClick = () => {
         router.replace(href)  // Replaces useHistory with Next.js navigation
     }

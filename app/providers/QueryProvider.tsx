@@ -14,8 +14,8 @@ function QueryProvider({children}: { children: ReactNode }) {
         <CommerceApiProvider
             clientId={config.CLIENT_ID}
             organizationId={config.ORGANIZATION_ID}
-            proxy="http://localhost:3000/mobify/proxy/api"
-            redirectURI="http://localhost:3000/callback"
+            redirectURI={`${process.env.NEXT_PUBLIC_APP_ORIGIN}/callback`}
+            proxy={`${process.env.NEXT_PUBLIC_APP_ORIGIN}/mobify/proxy/api`}
             siteId={config.SITE_ID}
             shortCode={config.SHORT_CODE}
             locale="en-US"
