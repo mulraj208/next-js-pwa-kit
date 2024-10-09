@@ -12,6 +12,7 @@
     "@chakra-ui/anatomy": "2.3.4",
     "@chakra-ui/icons": "2.2.4",
     "@chakra-ui/react": "2.10.1",
+    "@chakra-ui/styled-system": "2.11.1",
     "@salesforce/commerce-sdk-react": "3.0.1",
     "@salesforce/pwa-kit-react-sdk": "3.7.1",
     "@salesforce/pwa-kit-runtime": "3.3.0",
