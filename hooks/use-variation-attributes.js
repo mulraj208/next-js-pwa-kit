@@ -1,5 +1,4 @@
 import {useMemo} from 'react'
-import {useRouter} from 'next/navigation'
 import {useEffect, useState} from 'react'
 
 // Other Hooks
@@ -90,7 +89,6 @@ const isVariantValueOrderable = (product, variationParams) => {
  */
 export const useVariationAttributes = (product = {}, isProductPartOfSet = false) => {
     const {variationAttributes = []} = product
-    const router = useRouter()
     const [isClient, setIsClient] = useState(false)
 
     useEffect(() => {
@@ -121,7 +119,7 @@ export const useVariationAttributes = (product = {}, isProductPartOfSet = false)
                             ...value,
                             image: getVariantValueSwatch(product, value),
                             href: buildVariantValueHref({
-                                pathname: router.pathname,
+                                pathname: product.id,
                                 existingParams,
                                 newParams: params,
                                 productId: product.id,
@@ -132,6 +130,6 @@ export const useVariationAttributes = (product = {}, isProductPartOfSet = false)
                     })
                 }))
                 : [],
-        [router.asPath, product]
+        [product]
     )
 }
