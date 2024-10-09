@@ -1,6 +1,6 @@
 import {AspectRatio, Box, Button, Flex, Img, List, ListItem} from "@chakra-ui/react";
 import {useMemo, useState} from "react";
-import {findImageGroupBy} from "@salesforce/retail-react-app/app/utils/image-groups-utils";
+import {findImageGroupBy} from "@/utils/image-groups-utils";
 import styles from './image-gallery.styles'
 
 type ImageGalleryProps = {
