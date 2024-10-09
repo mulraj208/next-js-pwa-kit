@@ -131,6 +131,19 @@ declare module '@salesforce/retail-react-app/app/utils/image-groups-utils' {
     ): CommerceSDK.ImageGroup
 }
 
+declare module '@/utils/image-groups-utils' {
+    export function findImageGroupBy(
+        _imageGroups: Array<CommerceSDK.ImageGroup>,
+        _options: {
+            viewType: string
+            selectedVariationAttributes: {
+                color?: string
+                size?: string
+            } & Record<string, unknown>
+        }
+    ): CommerceSDK.ImageGroup
+}
+
 declare module '@salesforce/retail-react-app/app/utils/password-utils' {
     export function validatePassword(_value: string): {
         hasMinChars: boolean
