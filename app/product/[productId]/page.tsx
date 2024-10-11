@@ -1,7 +1,8 @@
 import React from 'react';
 import ProductView from "@/app/product/[productId]/product-view";
 import Auth from "@salesforce/commerce-sdk-react/auth";
-import config from "@/config/dw";
+import {getAuthInstance} from "@/auth";
+import {authConfig} from "@/auth/auth-config";
 
 async function fetchProductData(auth: Auth) {
     try {
@@ -25,17 +26,7 @@ async function fetchProductData(auth: Auth) {
 
 export default async function ProductDetail({params}: { params: { productId: string } }) {
     const {productId} = params;
-    const auth = new Auth({
-        logger: console,
-        clientId: config.CLIENT_ID,
-        organizationId: config.ORGANIZATION_ID,
-        redirectURI: `${process.env.NEXT_PUBLIC_APP_ORIGIN}/callback`,
-        proxy: `${process.env.NEXT_PUBLIC_APP_ORIGIN}/mobify/proxy/api`,
-        siteId: config.SITE_ID,
-        shortCode: config.SHORT_CODE,
-        locale: "en-US",
-        currency: "USD"
-    })
+    const auth = getAuthInstance(authConfig)
     const productData = await fetchProductData(auth);
 
     return (
