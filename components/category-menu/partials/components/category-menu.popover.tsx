@@ -49,7 +49,7 @@ const CategoryMenuPopover: React.FC<CategoryMenuPopoverProps> = props => {
   useEffect(() => {
     // Location has changed, close the menu
     handleClose()
-  }, [path])
+  }, [path, handleClose])
 
   const handleMouseEnter = () => {
     openingTimeout.current = setTimeout(() => {

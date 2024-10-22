@@ -54,7 +54,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = props => {
   // Close menu when a link is clicked (location changed)
   useEffect(() => {
     handleClose()
-  }, [pathname])
+  }, [pathname, handleClose])
 
   return (
     <Drawer
