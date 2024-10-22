@@ -3,22 +3,36 @@ import ProductView from "@/app/product/[productId]/product-view";
 import Auth from "@salesforce/commerce-sdk-react/auth";
 import {getAuthInstance} from "@/auth";
 import {authConfig} from "@/auth/auth-config";
+import {ShopperProducts} from "commerce-sdk-isomorphic";
+import config from '@/config/dw'
 
-async function fetchProductData(auth: Auth) {
+async function fetchProductData(auth: Auth, productId: string) {
     try {
         const { access_token } = await auth.ready();
 
-        const response = await fetch('https://kv7kzm78.api.commercecloud.salesforce.com/product/shopper-products/v1/organizations/f_ecom_zzuz_008/products/TG250M?currency=USD&locale=en-US&allImages=true&siteId=RefArch', {
+        const shopperProducts = new ShopperProducts({
+            parameters: {
+                clientId: config.CLIENT_ID,
+                organizationId: config.ORGANIZATION_ID,
+                redirectURI: `${process.env.NEXT_PUBLIC_APP_ORIGIN}/callback`,
+                proxy: `${process.env.NEXT_PUBLIC_APP_ORIGIN}/mobify/proxy/api`,
+                siteId: config.SITE_ID,
+                shortCode: config.SHORT_CODE,
+                locale: "en-US",
+                currency: "USD",
+            },
+            proxy: `${process.env.NEXT_PUBLIC_APP_ORIGIN}/mobify/proxy/api`
+        });
+
+        return await shopperProducts.getProduct({
+            parameters: {
+                id: productId,
+                allImages: true
+            },
             headers: {
                 Authorization: `Bearer ${access_token}`
             }
         });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        return await response.json();
     } catch (error) {
         console.error('Failed to fetch product data:', error);
     }
@@ -27,7 +41,7 @@ async function fetchProductData(auth: Auth) {
 export default async function ProductDetail({params}: { params: { productId: string } }) {
     const {productId} = params;
     const auth = getAuthInstance(authConfig)
-    const productData = await fetchProductData(auth);
+    const productData = await fetchProductData(auth, productId);
 
     return (
         <ProductView productId={productId} productData={productData} />

@@ -9,7 +9,7 @@ import {useEffect, useState} from 'react'
 import {useVariant} from './use-variant'
 import {useVariationParams} from './use-variation-params'
 import {useVariationAttributes} from './use-variation-attributes'
-import {getDisplayPrice} from '../utils/product-utils'
+import {getDisplayPrice} from '@/utils/product-utils'
 
 const OUT_OF_STOCK = 'OUT_OF_STOCK'
 const UNFULFILLABLE = 'UNFULFILLABLE'

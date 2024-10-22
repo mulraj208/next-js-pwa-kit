@@ -10,20 +10,24 @@ import {ChakraProvider} from "@chakra-ui/react";
 import {themeDefault} from '@/theme'
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 
+export const defaultConfig = {
+    clientId: config.CLIENT_ID,
+    organizationId: config.ORGANIZATION_ID,
+    redirectURI: `${process.env.NEXT_PUBLIC_APP_ORIGIN}/callback`,
+    proxy: `${process.env.NEXT_PUBLIC_APP_ORIGIN}/mobify/proxy/api`,
+    siteId: config.SITE_ID,
+    shortCode: config.SHORT_CODE,
+    locale: "en-US",
+    currency: "USD",
+}
+
 function QueryProvider({children}: { children: ReactNode }) {
     const [queryClient] = useState(() => new QueryClient())
 
     return (
         <QueryClientProvider client={queryClient}>
             <CommerceApiProvider
-                clientId={config.CLIENT_ID}
-                organizationId={config.ORGANIZATION_ID}
-                redirectURI={`${process.env.NEXT_PUBLIC_APP_ORIGIN}/callback`}
-                proxy={`${process.env.NEXT_PUBLIC_APP_ORIGIN}/mobify/proxy/api`}
-                siteId={config.SITE_ID}
-                shortCode={config.SHORT_CODE}
-                locale="en-US"
-                currency="USD"
+                {...defaultConfig}
             >
                 <ChakraProvider theme={themeDefault}>
                     {children}

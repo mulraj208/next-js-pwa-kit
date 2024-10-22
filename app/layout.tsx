@@ -28,9 +28,9 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
         <QueryProvider locals={{}}>
             <Flex as="body" minH="100vh" h='100%' w='100%' className={`${geistSans.variable} ${geistMono.variable}`}>
                 <Box as="main" flex="1 0 auto" w="100%">
-                    <Header/>
+                    {/*<Header/>*/}
                     {children}
-                    <Footer/>
+                    {/*<Footer/>*/}
                 </Box>
             </Flex>
         </QueryProvider>

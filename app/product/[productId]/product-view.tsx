@@ -19,8 +19,6 @@ export default function ProductView(props: ProductViewProps) {
     const {productId, productData: product} = props;
     const isProductPartOfSet = false;
 
-    console.log(productId)
-
     const {
         variationAttributes,
         variationParams,
