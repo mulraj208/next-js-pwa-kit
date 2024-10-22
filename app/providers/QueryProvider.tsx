@@ -1,30 +1,35 @@
 'use client'
 
-import {ReactNode} from 'react'
+import {ReactNode, useState} from 'react'
 import {CommerceApiProvider} from '@salesforce/commerce-sdk-react'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import {withReactQuery} from '@salesforce/pwa-kit-react-sdk/ssr/universal/components/with-react-query'
 import config from '../../config/dw'
 import {ChakraProvider} from "@chakra-ui/react";
-import { themeDefault } from '@/theme'
+import {themeDefault} from '@/theme'
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 
 function QueryProvider({children}: { children: ReactNode }) {
+    const [queryClient] = useState(() => new QueryClient())
+
     return (
-        <CommerceApiProvider
-            clientId={config.CLIENT_ID}
-            organizationId={config.ORGANIZATION_ID}
-            redirectURI={`${process.env.NEXT_PUBLIC_APP_ORIGIN}/callback`}
-            proxy={`${process.env.NEXT_PUBLIC_APP_ORIGIN}/mobify/proxy/api`}
-            siteId={config.SITE_ID}
-            shortCode={config.SHORT_CODE}
-            locale="en-US"
-            currency="USD"
-        >
-            <ChakraProvider theme={themeDefault}>
-                {children}
-            </ChakraProvider>
-        </CommerceApiProvider>
+        <QueryClientProvider client={queryClient}>
+            <CommerceApiProvider
+                clientId={config.CLIENT_ID}
+                organizationId={config.ORGANIZATION_ID}
+                redirectURI={`${process.env.NEXT_PUBLIC_APP_ORIGIN}/callback`}
+                proxy={`${process.env.NEXT_PUBLIC_APP_ORIGIN}/mobify/proxy/api`}
+                siteId={config.SITE_ID}
+                shortCode={config.SHORT_CODE}
+                locale="en-US"
+                currency="USD"
+            >
+                <ChakraProvider theme={themeDefault}>
+                    {children}
+                </ChakraProvider>
+            </CommerceApiProvider>
+        </QueryClientProvider>
     )
 }
 

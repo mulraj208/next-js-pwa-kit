@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import {useProduct} from "@salesforce/commerce-sdk-react";
 import {Box, Button, Flex, Spinner, Text} from "@chakra-ui/react";
 import ImageGallerySkeleton from "@/components/product-view/ImageGallerySkeleton";
 import ImageGallery from "@/components/product-view/ImageGallery";
@@ -17,14 +16,11 @@ interface ProductViewProps {
 }
 
 export default function ProductView(props: ProductViewProps) {
-    const {productId, productData} = props;
+    const {productId, productData: product} = props;
     const isProductPartOfSet = false;
-    const {data: product, isLoading} = useProduct({
-        parameters: {
-            id: productId,
-            allImages: true
-        }
-    }, {initialData: productData})
+
+    console.log(productId)
+
     const {
         variationAttributes,
         variationParams,
@@ -42,7 +38,7 @@ export default function ProductView(props: ProductViewProps) {
     const isOutOfStock = stockLevel === 0
 
     return (
-        <Flex bg="blackAlpha.50" direction={{base: 'column', lg: 'row'}} gap={8} p={8} justify="center" h="full">
+        <Flex bg="blackAlpha.50" direction={{base: 'column', lg: 'row'}} gap={8} p={8} justify="center">
             <Box h="auto" w="30rem">
                 {product ? (
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -88,7 +84,7 @@ export default function ProductView(props: ProductViewProps) {
                     </Text>
                 ) : null}
 
-                <Button isDisabled={isOutOfStock} isLoading={isLoading} spinner={<Spinner size="md"/>}>
+                <Button isDisabled={isOutOfStock} spinner={<Spinner size="md"/>}>
                     Add to Cart
                 </Button>
             </Flex>
