@@ -92,7 +92,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = props => {
                   item={root}
                   itemsKey={itemsKey}
                   marginBottom={5}
-                  urlBuilder={(category: CommerceSDK.Category) => categoryUrlBuilder(category as CommerceSDK.Category)}
+                  urlBuilder={(category: AccordionItemType) => categoryUrlBuilder(category as CommerceSDK.Category)}
                 />
               </Fade>
             ) : (
