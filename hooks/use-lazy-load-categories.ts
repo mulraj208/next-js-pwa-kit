@@ -1,25 +1,12 @@
-// CONSTANTS
-
-// SDK HOOKS
-import {useCategory} from '@salesforce/commerce-sdk-react'
-
-// PROVIDERS
-
-// UTILS
-import {CAT_MENU_DEFAULT_NAV_SSR_DEPTH, CAT_MENU_DEFAULT_ROOT_CATEGORY} from "@/constants";
 import {mergeMatchedItems} from "@/utils/utils";
 import {useCategoryBulk} from "@/hooks/use-category-bulk";
+import type { levelZeroCategoriesQuery } from "@/components/header/header";
 
 const onClient = typeof window !== 'undefined'
 
-export const useLazyLoadCategories = () => {
+export const useLazyLoadCategories = ({ levelZeroCategoriesQuery }: { levelZeroCategoriesQuery: levelZeroCategoriesQuery }) => {
     const itemsKey = 'categories'
-
-    const levelZeroCategoriesQuery = useCategory({
-        parameters: {id: CAT_MENU_DEFAULT_ROOT_CATEGORY, levels: CAT_MENU_DEFAULT_NAV_SSR_DEPTH}
-    })
-
-    const ids = levelZeroCategoriesQuery.data?.[itemsKey]?.map(category => category.id)
+    const ids = levelZeroCategoriesQuery?.[itemsKey]?.map((category: CommerceSDK.Category) => category.id)
     const queries = useCategoryBulk(ids, {
         enabled: onClient && ids && ids?.length > 0
     })
@@ -31,8 +18,8 @@ export const useLazyLoadCategories = () => {
         isLoading,
         isError,
         data: {
-            ...levelZeroCategoriesQuery.data,
-            [itemsKey]: mergeMatchedItems(levelZeroCategoriesQuery.data?.categories || [], dataArray)
+            ...levelZeroCategoriesQuery,
+            [itemsKey]: mergeMatchedItems(levelZeroCategoriesQuery?.categories || [], dataArray)
         }
     }
 }

@@ -6,47 +6,36 @@ import {
 } from '@chakra-ui/react'
 
 import Link from 'next/link'
-import {ShopperProducts} from 'commerce-sdk-isomorphic';
-
+import Auth from "@salesforce/commerce-sdk-react/auth";
 import {categoryUrlBuilder} from '@/utils/urls'
 import {ChevronRight} from '@/components/icons'
-import {defaultConfig as config} from "@/app/providers/QueryProvider";
-import Auth from "@salesforce/commerce-sdk-react/auth";
 import {getAuthInstance} from "@/auth";
 import {authConfig} from "@/auth/auth-config";
+import {getApiClients} from "@/utils/commerce-api";
 
 type BreadcrumbProps = {
   product?: CommerceSDK.Product$0
 }
 
-async function fetchCategory(auth: Auth, product: CommerceSDK.Product$0) {
+async function fetchCategory(auth: Auth, categoryId: string = ''): Promise<CommerceSDK.Category | null> {
   try {
-    const { access_token } = await auth.ready();
-
-    const shopperProducts = new ShopperProducts({
-      parameters: {
-        ...config
-      },
-      proxy: config.proxy
-    });
+    const {shopperProducts} = await getApiClients();
 
     return await shopperProducts.getCategory({
       parameters: {
-        id: product.primaryCategoryId || '',
+        id: categoryId,
         levels: 1,
-      },
-      headers: {
-        Authorization: `Bearer ${access_token}`
       }
     });
   } catch (error) {
     console.error('Failed to fetch category:', error);
+    return null;
   }
 }
 
 const Breadcrumbs: React.FC<BreadcrumbProps> = (props) => {
   const { product } = props
-  const [category, setCategory] = useState<CommerceSDK.Category | undefined>(undefined)
+  const [category, setCategory] = useState<CommerceSDK.Category | null>(null)
 
   useEffect(() => {
     if (!product || !product?.primaryCategoryId) {
@@ -55,7 +44,7 @@ const Breadcrumbs: React.FC<BreadcrumbProps> = (props) => {
 
     const fetchData = async () => {
       const auth = getAuthInstance(authConfig)
-      const category = await fetchCategory(auth, product);
+      const category = await fetchCategory(auth, product.primaryCategoryId);
 
       setCategory(category)
     }
@@ -75,7 +64,7 @@ const Breadcrumbs: React.FC<BreadcrumbProps> = (props) => {
                   as={Link}
                   py={3}
                   textDecoration="none"
-                  href={categoryUrlBuilder(category as CommerceSDK.Category)} // Use `href` in Next.js
+                  href={categoryUrlBuilder(category as CommerceSDK.Category)}
               >
                 {category.name}
               </ChakraBreadcrumbLink>

@@ -5,7 +5,7 @@ import {CommerceApiProvider} from '@salesforce/commerce-sdk-react'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import {withReactQuery} from '@salesforce/pwa-kit-react-sdk/ssr/universal/components/with-react-query'
-import config from '../../config/dw'
+import config from '@/config/dw'
 import {ChakraProvider} from "@chakra-ui/react";
 import {themeDefault} from '@/theme'
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
