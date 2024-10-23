@@ -41,7 +41,7 @@ export default function ProductView(props: ProductViewProps) {
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore
                     <ImageGallery imageGroups={product.imageGroups || []}
-                                  selectedVariationAttributes={variationParams}/>
+                                  selectedVariationAttributes={variationParams} product={product} />
                 ) : (
                     <ImageGallerySkeleton/>
                 )}

@@ -14,6 +14,14 @@ const nextConfig = {
             ],
         }
     },
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'edge.disstg.commercecloud.salesforce.com',
+            },
+        ],
+    },
 };
 
 export default nextConfig;

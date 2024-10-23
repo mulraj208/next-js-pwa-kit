@@ -2,11 +2,13 @@ import {AspectRatio, Box, Button, Flex, Img, List, ListItem} from "@chakra-ui/re
 import {useMemo, useState} from "react";
 import {findImageGroupBy} from "@/utils/image-groups-utils";
 import styles from './image-gallery.styles'
+import Image from "next/image";
 
 type ImageGalleryProps = {
     imageGroups: Array<CommerceSDK.ImageGroup>
     selectedVariationAttributes: Array<string>
     isLazy?: boolean
+    product: CommerceSDK.Product$0
 }
 
 const ImageViewType = {
@@ -15,7 +17,7 @@ const ImageViewType = {
 }
 
 const ImageGallery: React.FC<ImageGalleryProps> = props => {
-    const {imageGroups, selectedVariationAttributes = {}, isLazy = false} = props
+    const {imageGroups, selectedVariationAttributes = {}, isLazy = false, product} = props
     const [selectedIndex, setSelectedIndex] = useState(0)
 
     const heroImageGroup = useMemo(
@@ -52,8 +54,14 @@ const ImageGallery: React.FC<ImageGalleryProps> = props => {
             {heroImage ? (
                 <Box mb={2}>
                     <AspectRatio ratio={1}>
-                        <Img alt={heroImage.alt} loading={loadingStrategy}
-                             src={heroImage.disBaseLink || heroImage.link}/>
+                        <Image
+                            src={heroImage.disBaseLink || heroImage.link}
+                            className="block rounded-lg grayscale"
+                            alt={heroImage.alt || product.name || 'Image'}
+                            width={480}
+                            height={480}
+                            priority
+                        />
                     </AspectRatio>
                 </Box>
             ) : null}
