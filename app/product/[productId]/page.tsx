@@ -44,6 +44,6 @@ export default async function ProductDetail({params}: { params: { productId: str
     const productData = await fetchProductData(auth, productId);
 
     return (
-        <ProductView productId={productId} productData={productData} />
+        <ProductView productData={productData} />
     );
 }

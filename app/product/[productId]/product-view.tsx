@@ -11,12 +11,11 @@ import {useDerivedProduct} from "@/hooks/use-derived-product";
 import ProductQuantityStepper from "@/components/product-view/product-view.quantity-stepper";
 
 interface ProductViewProps {
-    productId: string
     productData: CommerceSDK.Product$0 | undefined
 }
 
 export default function ProductView(props: ProductViewProps) {
-    const {productId, productData: product} = props;
+    const {productData: product} = props;
     const isProductPartOfSet = false;
 
     const {
