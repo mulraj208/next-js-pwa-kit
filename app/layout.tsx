@@ -24,16 +24,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: Readonly<{ children: React.ReactNode }>) {
     return (
-    <html lang="en">
-        <QueryProvider locals={{}}>
-            <Flex as="body" minH="100vh" h='100%' w='100%' className={`${geistSans.variable} ${geistMono.variable}`}>
-                <Box as="main" flex="1 0 auto" w="100%">
-                    {/*<Header/>*/}
-                    {children}
-                    {/*<Footer/>*/}
-                </Box>
-            </Flex>
-        </QueryProvider>
-    </html>
+        <html lang="en">
+            <QueryProvider locals={{}}>
+                <Flex as="body" minH="100vh" h='100%' w='100%' className={`${geistSans.variable} ${geistMono.variable}`}>
+                    <Box as="main" flex="1 0 auto" w="100%">
+                        <Header/>
+                            {children}
+                        <Footer/>
+                    </Box>
+                </Flex>
+            </QueryProvider>
+        </html>
     );
 }
