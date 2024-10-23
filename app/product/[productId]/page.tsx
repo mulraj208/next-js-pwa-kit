@@ -8,7 +8,7 @@ import config from '@/config/dw'
 
 async function fetchProductData(auth: Auth, productId: string) {
     try {
-        const { access_token } = await auth.ready();
+        const {access_token} = await auth.ready();
 
         const shopperProducts = new ShopperProducts({
             parameters: {

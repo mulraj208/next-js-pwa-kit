@@ -17,7 +17,6 @@ interface ProductViewProps {
 export default function ProductView(props: ProductViewProps) {
     const {productData: product} = props;
     const isProductPartOfSet = false;
-
     const {
         variationAttributes,
         variationParams,

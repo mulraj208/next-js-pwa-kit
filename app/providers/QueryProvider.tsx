@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import {ReactNode, useState} from 'react'
 import {CommerceApiProvider} from '@salesforce/commerce-sdk-react'
@@ -26,17 +26,12 @@ function QueryProvider({children}: { children: ReactNode }) {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <CommerceApiProvider
-                {...defaultConfig}
-            >
-                <ChakraProvider theme={themeDefault}>
-                    {children}
-                </ChakraProvider>
+            <CommerceApiProvider {...defaultConfig}>
+                <ChakraProvider theme={themeDefault}>{children}</ChakraProvider>
             </CommerceApiProvider>
         </QueryClientProvider>
     )
 }
-
 
 const isServerSide = typeof window === 'undefined'
 
