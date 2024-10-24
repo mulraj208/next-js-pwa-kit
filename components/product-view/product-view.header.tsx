@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Heading, VStack } from '@chakra-ui/react'
-import Breadcrumbs from "@/components/breadcrumbs";
+// import Breadcrumbs from "@/components/breadcrumbs";
 import DisplayPrice from "@/components/product-view/display-price";
 
 type ProductViewHeaderProps = {
@@ -14,12 +14,12 @@ type ProductViewHeaderProps = {
 }
 
 const ProductViewHeader: React.FC<ProductViewHeaderProps> = props => {
-  const { name, productType, product, basePrice, discountPrice, productCurrency } = props
+  const { name, productType, basePrice, discountPrice, productCurrency } = props
   const isProductASet = productType?.set
 
   return (
     <VStack align="flex-start" mr={4} spacing={3}>
-      <Breadcrumbs product={product} />
+      {/*<Breadcrumbs product={product} />*/}
       <Heading fontSize="2xl">{`${name as string}`}</Heading>
 
       <DisplayPrice
