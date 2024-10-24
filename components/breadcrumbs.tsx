@@ -6,18 +6,15 @@ import {
 } from '@chakra-ui/react'
 
 import Link from 'next/link'
-import Auth from "@salesforce/commerce-sdk-react/auth";
 import {categoryUrlBuilder} from '@/utils/urls'
 import {ChevronRight} from '@/components/icons'
-import {getAuthInstance} from "@/auth";
-import {authConfig} from "@/auth/auth-config";
 import {getApiClients} from "@/utils/commerce-api";
 
 type BreadcrumbProps = {
   product?: CommerceSDK.Product$0
 }
 
-async function fetchCategory(auth: Auth, categoryId: string = ''): Promise<CommerceSDK.Category | null> {
+async function fetchCategory(categoryId: string = ''): Promise<CommerceSDK.Category | null> {
   try {
     const {shopperProducts} = await getApiClients();
 
@@ -43,8 +40,7 @@ const Breadcrumbs: React.FC<BreadcrumbProps> = (props) => {
     }
 
     const fetchData = async () => {
-      const auth = getAuthInstance(authConfig)
-      const category = await fetchCategory(auth, product.primaryCategoryId);
+      const category = await fetchCategory(product.primaryCategoryId);
 
       setCategory(category)
     }

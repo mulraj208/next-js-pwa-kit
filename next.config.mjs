@@ -2,6 +2,9 @@
 import bundleAnalyzer from '@next/bundle-analyzer'
 
 const nextConfig = {
+    experimental: {
+        optimizePackageImports: ["@/components/icons"]
+    },
     async rewrites() {
         return {
             fallback: [
