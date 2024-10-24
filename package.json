@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:report": "ANALYZE=true npm run build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -17,6 +18,7 @@
     "@chakra-ui/theme-tools": "2.2.5",
     "@emotion/react": "11.13.3",
     "@emotion/styled": "11.13.0",
+    "@next/bundle-analyzer": "15.0.1",
     "@salesforce/commerce-sdk-react": "3.0.1",
     "@salesforce/pwa-kit-react-sdk": "3.7.1",
     "@salesforce/pwa-kit-runtime": "3.3.0",
