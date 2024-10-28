@@ -4,6 +4,11 @@ export const DEFAULT_SITE_DESCRIPTION = 'Commerce Cloud, Systema, React Storefro
 export const CAT_MENU_DEFAULT_NAV_SSR_DEPTH = 1
 export const CAT_MENU_DEFAULT_ROOT_CATEGORY = 'root'
 
+// Constants for Search Component
+export const RECENT_SEARCH_LIMIT = 5
+export const RECENT_SEARCH_KEY = 'recent-search-key'
+export const RECENT_SEARCH_MIN_LENGTH = 3
+
 export const SHIPPING_STATE_CODES = [
     { value: 'AL', label: 'Alabama' },
     { value: 'AK', label: 'Alaska' },

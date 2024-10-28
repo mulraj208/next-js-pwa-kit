@@ -103,7 +103,7 @@ export const getSessionJSONItem = (key) => {
 /**
  * sets an item in session storage
  * @param {string} key
- * @param {string} value
+ * @param {Array<string>} value
  */
 export const setSessionJSONItem = (key, value) => {
     window.sessionStorage.setItem(key, JSON.stringify(value))
