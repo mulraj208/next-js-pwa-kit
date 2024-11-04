@@ -55,7 +55,7 @@ const CategoryMenuContent: React.FC<CategoryMenuContentProps> = props => {
           {categoriesData.map(item => {
             return (
               <LinksList
-                colorScheme="carminepink.900"
+                colorScheme="red.900"
                 heading={item.heading}
                 key={item.id}
                 links={item.links}

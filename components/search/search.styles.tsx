@@ -4,13 +4,13 @@ const input: InputProps = {
   width: 'full',
   outline: 'none',
   border: '2px solid',
-  borderColor: 'carminepink.300',
+  borderColor: 'red.300',
   borderRadius: 4,
   py: 1,
   pl: 7,
   pr: 2,
   _focusWithin: {
-    borderColor: 'carminepink.900'
+    borderColor: 'red.900'
   }
 }
 
@@ -19,7 +19,7 @@ const spinner: SpinnerProps = {
   h: 14,
   my: 10,
   opacity: 0.85,
-  color: 'carminepink.900',
+  color: 'red.900',
   zIndex: 5
 }
 
@@ -46,7 +46,7 @@ const suggestion: LinkProps = {
   pl: 0,
   mt: 0,
   _hover: {
-    color: 'carminepink.800',
+    color: 'red.800',
     textDecoration: 'underline'
   }
 }

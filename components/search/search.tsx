@@ -4,18 +4,15 @@ import React, { useEffect, useMemo, useRef, useState } from 'react'
 
 import { SearchIcon } from 'lucide-react'
 import {
-  Button,
   Center,
   Flex,
   HStack,
-  InputGroup,
-  InputLeftElement,
   PopoverContent,
   PopoverTrigger,
   Spinner,
   Text,
   VisuallyHidden,
-  useBreakpointValue
+  useBreakpointValue, Box
 } from '@chakra-ui/react'
 import { useSearchSuggestions } from '@salesforce/commerce-sdk-react'
 import debounce from 'lodash/debounce'
@@ -24,12 +21,13 @@ import SearchInput from './partials/components/search.input'
 import SearchSuggestions from './partials/components/search.suggestions'
 import styles from './search.styles'
 
-import Popover from '../popover'
-import {DISCLOSURES_IDS, RECENT_SEARCH_KEY, RECENT_SEARCH_LIMIT, RECENT_SEARCH_MIN_LENGTH} from "@/constants";
+import {RECENT_SEARCH_KEY, RECENT_SEARCH_LIMIT, RECENT_SEARCH_MIN_LENGTH} from "@/constants";
 import {boldString, capitalize, getSessionJSONItem, setSessionJSONItem} from "@/utils/utils";
 import {HideOnDesktop, HideOnMobile} from "@/components/responsive";
 import {categoryUrlBuilder, productUrlBuilder, searchUrlBuilder} from "@/utils/urls";
 import {usePathname, useRouter} from "next/navigation";
+import {PopoverRoot} from "@/components/ui/popover";
+import {Button} from "@/components/ui/button";
 
 type Suggestion = {
   id: string
@@ -254,20 +252,14 @@ const Search: React.FC = () => {
         </Text>
       </VisuallyHidden>
 
-      <Popover
-        isLazy
-        disclosureId={DISCLOSURES_IDS.SEARCH_POPOVER}
-        disclosureProps={{ isOpen }}
-        initialFocusRef={searchInputRef}
-        variant="recentSearches"
-      >
+      <PopoverRoot open={isOpen}>
         <PopoverTrigger>
           <form noValidate onSubmit={event => handleSearchSubmit(event)}>
             <HStack>
-              <InputGroup>
-                <InputLeftElement h="full" mr="2rem" pointerEvents="none" w="2rem">
-                  <SearchIcon color="carminepink.900" />
-                </InputLeftElement>
+              <Flex pos="relative">
+                <Box pos="absolute" top={0} left={0} h="full" mr="2rem" pointerEvents="none" w="2rem">
+                  <SearchIcon color="red.900" />
+                </Box>
 
                 <SearchInput
                   autoComplete="off"
@@ -279,7 +271,7 @@ const Search: React.FC = () => {
                   onSearchFocus={handleSearchFocus}
                   onSearchInputChange={handleSearchInputChange}
                 />
-              </InputGroup>
+              </Flex>
 
               <HideOnDesktop>
                 <Button
@@ -319,7 +311,7 @@ const Search: React.FC = () => {
             )}
           </PopoverContent>
         </HideOnMobile>
-      </Popover>
+      </PopoverRoot>
 
       {/* Search results on MOBILE */}
       <HideOnDesktop>

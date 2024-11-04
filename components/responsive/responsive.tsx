@@ -7,7 +7,7 @@ import { Box } from '@chakra-ui/react'
  * @param children - isomorphic components used within a responsive design
  */
 export const HideOnDesktop: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <Box display={{ base: 'block', lg: 'none' }}>{children}</Box>
+  <Box display={{ base: 'block', lg: 'none' }} suppressHydrationWarning>{children}</Box>
 )
 
 /**
@@ -15,7 +15,7 @@ export const HideOnDesktop: React.FC<{ children: React.ReactNode }> = ({ childre
  * @param children - isomorphic components used within a responsive design
  */
 export const HideOnMobile: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <Box display={{ base: 'none', lg: 'block' }}>{children}</Box>
+  <Box display={{ base: 'none', lg: 'block' }} suppressHydrationWarning>{children}</Box>
 )
 
 export default { HideOnMobile, HideOnDesktop }

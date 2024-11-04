@@ -36,7 +36,7 @@ const RecentSearches: React.FC<RecentSearchesProps> = props => {
                 href={searchUrlBuilder(recentSearch)}
                 width="full"
                 _hover={{
-                  color: 'carminepink.800'
+                  color: 'red.800'
                 }}
               >
                 <Text fontWeight="400">{recentSearch}</Text>

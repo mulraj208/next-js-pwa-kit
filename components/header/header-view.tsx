@@ -44,12 +44,12 @@ const HeaderView = ({ levelZeroCategoriesQuery }: { levelZeroCategoriesQuery: le
                     <HStack>
                         {/* Mobile Menu Icon */}
                         <HideOnDesktop>
-                            <MenuIcon width="2rem" height="2rem" color="carminepink.800" aria-label="Menu" onClick={handleOpen} />
+                            <MenuIcon width="2rem" height="2rem" color="red.800" aria-label="Menu" onClick={handleOpen} />
                         </HideOnDesktop>
 
                         {/* Logo */}
                         <ChakraLink as={Link} href={HOME_HREF}>
-                            <Heading as="h2" color="carminepink.800" fontSize="2rem" size="md">
+                            <Heading as="h2" color="red.600" fontSize="2rem" size="md">
                                 SYSTEMA
                             </Heading>
                         </ChakraLink>
@@ -65,7 +65,7 @@ const HeaderView = ({ levelZeroCategoriesQuery }: { levelZeroCategoriesQuery: le
 
                     {/* Search Field */}
                     <Box ml="auto" width={{base: 'full', lg: 60}}>
-                        {/*<Search />*/}
+                        <Search />
                     </Box>
 
                     {/* Login link placeholder

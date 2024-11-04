@@ -7,7 +7,7 @@ const container: BoxProps = {
   backgroundColor: 'white',
   minWidth: 'xs',
   width: 'full',
-  boxShadow: 'base',
+  shadow: 'lg',
   display: 'flex',
   alignItems: 'center',
   py: { base: 3, lg: 0 }

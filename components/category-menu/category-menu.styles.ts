@@ -61,7 +61,7 @@ const menuItemActive: LinkProps = {
     bottom: 0,
     width: '100%',
     height: '1',
-    bg: 'carminepink.900'
+    bg: 'red.900'
   }
 }
 
@@ -80,7 +80,7 @@ const expandableMenuItem: LinkProps = {
   },
   _hover: {
     _before: {
-      bg: 'carminepink.900',
+      bg: 'red.900',
       transform: 'translateX(0)'
     }
   }

@@ -64,7 +64,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = props => {
                 <DrawerCloseTrigger/>
                 <DrawerHeader>
                     <Link href="/" onClick={handleClose}>
-                        <Heading as="h2" color="carminepink.800" fontSize="2rem" size="md">
+                        <Heading as="h2" color="red.800" fontSize="2rem" size="md">
                             SYSTEMA
                         </Heading>
                     </Link>
