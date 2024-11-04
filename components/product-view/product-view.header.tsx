@@ -18,7 +18,7 @@ const ProductViewHeader: React.FC<ProductViewHeaderProps> = props => {
   const isProductASet = productType?.set
 
   return (
-    <VStack align="flex-start" mr={4} spacing={3}>
+    <VStack align="flex-start" mr={4} gap={3}>
       <Breadcrumbs product={product} />
       <Heading fontSize="2xl">{`${name as string}`}</Heading>
 

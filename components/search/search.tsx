@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react'
 
 import { SearchIcon } from 'lucide-react'
 import {
@@ -104,7 +104,7 @@ const Search: React.FC = () => {
   )
   const searchInputRef = useRef<HTMLInputElement>(null)
   const recentSearches = (getSessionJSONItem(RECENT_SEARCH_KEY) || []) as Array<string>
-  const searchSuggestions = useMemo(() => formatSuggestions(searchSuggestion.data, searchQuery), [searchSuggestion])
+  const searchSuggestions = useMemo(() => formatSuggestions(searchSuggestion.data, searchQuery), [searchQuery, searchSuggestion.data])
   const hasSearchSuggestions = !!(
     searchSuggestions &&
     (searchSuggestions?.categorySuggestions?.length ||
@@ -120,7 +120,7 @@ const Search: React.FC = () => {
     setIsSearchFocused(false)
   }
 
-  const handleOpenPopover = (forceOpen?: boolean) => {
+  const handleOpenPopover = useCallback((forceOpen?: boolean) => {
     // As per design we only want to show the popover if the input is focused, and we have recent searches saved,
     // or we have search suggestions available and have inputted some text
     // (empty text in this scenario should show recent searches)
@@ -135,23 +135,23 @@ const Search: React.FC = () => {
         setIsOpen(false)
       }
     }
-  }
+  }, [hasSearchSuggestions, isSearchFocused, recentSearches, searchQuery.length])
 
-  const handleSearchClose = () => {
+  const handleSearchClose = useCallback(() => {
     clearInput()
     setIsOpen(false)
     setSearchQuery('')
-  }
+  }, [])
 
   // Check if popover should open if we have suggestions
   useEffect(() => {
     handleOpenPopover()
-  }, [searchQuery, searchSuggestion.data])
+  }, [handleOpenPopover, searchQuery, searchSuggestion.data])
 
   // Check if location has changed -- (e.g.: suggested link clicked)
   useEffect(() => {
     handleSearchClose()
-  }, [path])
+  }, [handleSearchClose, path])
 
   const saveRecentSearch = (searchText: string) => {
     // Get recent searches or an empty array if undefined.

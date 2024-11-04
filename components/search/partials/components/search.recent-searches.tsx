@@ -27,7 +27,7 @@ const RecentSearches: React.FC<RecentSearchesProps> = props => {
             Recent Searches
           </Text>
 
-          <Stack mt={6} spacing={6}>
+          <Stack mt={6} gap={6}>
             {recentSearches.map(recentSearch => (
               <ChakraLink
                 as={Link}
@@ -50,7 +50,6 @@ const RecentSearches: React.FC<RecentSearchesProps> = props => {
             id="clear-search"
             justifyContent="left"
             pl={0}
-            variant="link"
             onMouseDown={handleClearSearches}
             onTouchStart={handleClearSearches}
           >

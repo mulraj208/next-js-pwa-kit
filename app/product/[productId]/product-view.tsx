@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import {Box, Button, Flex, Spinner, Text} from "@chakra-ui/react";
+import {Box, Button, Flex, Text} from "@chakra-ui/react";
 import ImageGallerySkeleton from "@/components/product-view/ImageGallerySkeleton";
 import ImageGallery from "@/components/product-view/ImageGallery";
 import ProductViewHeader from "@/components/product-view/product-view.header";
@@ -80,7 +80,7 @@ export default function ProductView(props: ProductViewProps) {
                     </Text>
                 ) : null}
 
-                <Button isDisabled={isOutOfStock} spinner={<Spinner size="md"/>}>
+                <Button disabled={isOutOfStock}>
                     Add to Cart
                 </Button>
             </Flex>

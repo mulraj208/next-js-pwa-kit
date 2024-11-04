@@ -28,7 +28,6 @@ const popoverContent: PopoverContentProps = {
 const menu: StackProps = {
   direction: 'row',
   flexWrap: 'wrap',
-  spacing: 0,
   whiteSpace: 'nowrap',
   height: 'full'
 }

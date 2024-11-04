@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import React, { createContext, useContext, useEffect } from 'react'
 
 import { UseDisclosureProps, UseDisclosureReturn, useDisclosure } from '@chakra-ui/react'

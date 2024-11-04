@@ -1,49 +1,28 @@
 import React from 'react'
 
-import { Button, HStack, Input, UseNumberInputProps, useNumberInput } from '@chakra-ui/react'
+import { Button, HStack, Input, NumberInputRootProps, useNumberInput } from '@chakra-ui/react'
 
-import styles from './quantity-stepper.styles'
+// import styles from './quantity-stepper.styles'
 
-interface QuantityStepperProps extends UseNumberInputProps {
+interface QuantityStepperProps extends NumberInputRootProps {
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void
 }
 
 const QuantityStepper: React.FC<QuantityStepperProps> = props => {
-  const buttonProps = {
-    colorScheme: 'secondary',
-    variant: 'outline',
-    ...styles.buttonStyles
-  }
+  // const buttonProps = {
+  //   colorScheme: 'secondary',
+  //   variant: 'outline',
+  //   ...styles.buttonStyles
+  // }
 
-  const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } = useNumberInput({
+  const { getInputProps, getIncrementTriggerProps, getDecrementTriggerProps } = useNumberInput({
     ...props,
-    focusInputOnChange: false,
-    onFocus: e => {
-      const { onFocus } = props
-
-      // This is useful for mobile devices, this allows the user to pop open the keyboard and set the
-      // new quantity with one click.
-      e.target.select()
-
-      // If there is a `onFocus` property define, call it with the event captured.
-      onFocus?.(e)
-    }
+    focusInputOnChange: false
   })
 
-  const incrementButtonProps = getIncrementButtonProps({
-    ...buttonProps,
-    'aria-label': 'Increase Quantity'
-  })
-
-  const decrementButtonProps = getDecrementButtonProps({
-    ...buttonProps,
-    'aria-label': 'Decrease Quantity'
-  })
-
-  const inputProps = getInputProps({
-    'aria-label': 'Quantity',
-    ...styles.inputStyles
-  })
+  const incrementButtonProps = getIncrementTriggerProps()
+  const decrementButtonProps = getDecrementTriggerProps()
+  const inputProps = getInputProps()
 
   // Accessibility improvements:
   // 1. Allow keyboard focus on the buttons - Chakra overrides values passed to get*ButtonProps()
@@ -51,6 +30,7 @@ const QuantityStepper: React.FC<QuantityStepperProps> = props => {
   decrementButtonProps.tabIndex = 0
 
   // 2. Allow Space or Enter key to trigger buttons
+  // @ts-expect-error - Fix this later
   incrementButtonProps.onKeyDown = (evt: React.KeyboardEvent<HTMLInputElement>) => {
     if (evt.key === ' ' || evt.key === 'Enter') {
       evt.key = 'ArrowUp'
@@ -61,6 +41,7 @@ const QuantityStepper: React.FC<QuantityStepperProps> = props => {
     }
   }
 
+  // @ts-expect-error - Fix this later
   decrementButtonProps.onKeyDown = (evt: React.KeyboardEvent<HTMLInputElement>) => {
     if (evt.key === ' ' || evt.key === 'Enter') {
       evt.key = 'ArrowDown'
@@ -74,6 +55,7 @@ const QuantityStepper: React.FC<QuantityStepperProps> = props => {
   return (
     <HStack>
       <Button {...decrementButtonProps}>-</Button>
+      {/* @ts-expect-error - Fix this later */}
       <Input {...inputProps} />
       <Button {...incrementButtonProps}>+</Button>
     </HStack>

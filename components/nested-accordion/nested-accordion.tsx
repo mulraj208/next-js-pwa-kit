@@ -2,15 +2,13 @@ import React from 'react'
 
 import { ChevronDownIcon, ChevronRightIcon } from 'lucide-react'
 import {
-  Accordion,
-  AccordionButton,
-  AccordionItem,
-  AccordionPanel,
-  AccordionProps,
+  Button,
   Heading,
-  Text
+  Text,
+  AccordionRootProps
 } from '@chakra-ui/react'
 import Link from 'next/link';
+import {AccordionItemContent, AccordionRoot} from "@/components/ui/accordion";
 
 export type AccordionItemType = {
   id?: string
@@ -24,7 +22,7 @@ type NestedAccordionMenuProps = {
   fontSizes?: Array<string>
   fontWeights?: Array<string>
   urlBuilder: (item: AccordionItemType) => string
-} & AccordionProps
+} & AccordionRootProps
 
 const NestedAccordionMenu: React.FC<NestedAccordionMenuProps> = props => {
   const {
@@ -33,82 +31,80 @@ const NestedAccordionMenu: React.FC<NestedAccordionMenuProps> = props => {
     initialDepth = 0,
     fontSizes,
     fontWeights,
-    urlBuilder = item => `/${item.id as string}`,
+    urlBuilder = (item: { id: string }) => `/${item.id}`,
     ...rest
   } = props
   const depth = initialDepth
   const items = item[itemsKey as string] as Array<AccordionItemType>
 
   return (
-    <Accordion className="sf-nested-accordion" {...rest}>
+    <AccordionRoot className="sf-nested-accordion" {...rest}>
       {items
         ? items.map((item: AccordionItemType) => {
             const { id, name } = item
             const items = item[itemsKey as string]
             const hasVisibleChild = !!(items && Object.keys(items).length > 0)
+            const isExpanded = false;
 
             return (
-              <AccordionItem border="none" key={id}>
-                {({ isExpanded }) => (
-                  <>
-                    {/* Heading */}
-                    <Heading as="h2">
-                      {/* Show item as a leaf node if it has no visible child items. */}
-                      {hasVisibleChild ? (
-                        <AccordionButton
-                          py={2}
-                          _hover={{
-                            color: 'red.900'
-                          }}
+              <AccordionItemContent key={id}>
+                  {/* Heading */}
+                  <Heading as="h2">
+                    {/* Show item as a leaf node if it has no visible child items. */}
+                    {hasVisibleChild ? (
+                        <Button
+                            py={2}
+                            _hover={{
+                              color: 'red.900'
+                            }}
                         >
                           {/* Replace default expanded/collapsed icons. */}
                           {isExpanded ? (
-                            <ChevronDownIcon color="gray" height="auto" width={6} />
+                              <ChevronDownIcon color="gray" height="auto" width={6} />
                           ) : (
-                            <ChevronRightIcon color="gray" height="auto" width={6} />
+                              <ChevronRightIcon color="gray" height="auto" width={6} />
                           )}
 
                           <Text
-                            fontSize={(fontSizes && fontSizes[depth]) || 'sm'}
-                            fontWeight={(fontWeights && fontWeights[depth]) || 'regular'}
+                              fontSize={(fontSizes && fontSizes[depth]) || 'sm'}
+                              fontWeight={(fontWeights && fontWeights[depth]) || 'regular'}
                           >
                             {name}
                           </Text>
-                        </AccordionButton>
-                      ) : (
-                        <AccordionButton
-                          as={Link}
-                          color="black"
-                          pl={8}
-                          py={2}
-                          href={urlBuilder(item)}
-                          _hover={{
-                            color: 'red.500'
-                          }}
+                        </Button>
+                    ) : (
+                        <Button
+                            as={Link}
+                            color="black"
+                            pl={8}
+                            py={2}
+                            // @ts-expect-error - Fix this later
+                            href={urlBuilder(item)}
+                            _hover={{
+                              color: 'red.500'
+                            }}
                         >
                           <Text
-                            fontSize={(fontSizes && fontSizes[depth]) || 'sm'}
-                            fontWeight={(fontWeights && fontWeights[depth]) || 'regular'}
+                              fontSize={(fontSizes && fontSizes[depth]) || 'sm'}
+                              fontWeight={(fontWeights && fontWeights[depth]) || 'regular'}
                           >
                             {name}
                           </Text>
-                        </AccordionButton>
-                      )}
-                    </Heading>
+                        </Button>
+                    )}
+                  </Heading>
 
-                    {/* Child Items */}
-                    {items ? (
-                      <AccordionPanel>
+                  {/* Child Items */}
+                  {items ? (
+                      <AccordionItemContent>
                         <NestedAccordionMenu pl={4} {...props} initialDepth={depth + 1} item={item} />
-                      </AccordionPanel>
-                    ) : null}
-                  </>
-                )}
-              </AccordionItem>
+                      </AccordionItemContent>
+                  ) : null}
+              </AccordionItemContent>
             )
           })
         : null}
-    </Accordion>
+    </AccordionRoot>
   )
 }
 

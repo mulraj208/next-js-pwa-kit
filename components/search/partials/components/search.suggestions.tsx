@@ -38,7 +38,7 @@ const SearchSuggestions: React.FC<SearchSuggestionsProps> = props => {
     <Box p={6}>
       {hasSuggestions ? (
         <Grid alignItems="flex-start" gap={6} {...gridConfig}>
-          <Stack spacing={4}>
+          <Stack gap={4}>
             <Text color="gray.700" fontSize="sm" fontWeight="600">
               Products
             </Text>
@@ -47,7 +47,7 @@ const SearchSuggestions: React.FC<SearchSuggestionsProps> = props => {
           </Stack>
 
           {searchSuggestions.categorySuggestions ? (
-            <Stack spacing={4}>
+            <Stack gap={4}>
               <Text color="gray.700" fontSize="sm" fontWeight="600">
                 Categories
               </Text>

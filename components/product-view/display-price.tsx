@@ -12,7 +12,7 @@ const DisplayPrice: React.FC<DisplayPriceProps> = props => {
     const {basePrice, discountPrice, isProductASet = false} = props
 
     return (
-        <Skeleton display="flex" isLoaded={!!basePrice}>
+        <Skeleton display="flex">
             {isProductASet ? (
                 <Text fontSize="md" fontWeight="bold" mr={1}>
                     Starting at{' '}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {FormEventHandler} from 'react'
 
 import QuantityStepper from '@/components/quantity-stepper'
 
@@ -23,7 +23,11 @@ const ProductQuantityStepper: React.FC<ProductQuantityStepperProps> = props => {
     }
   }
 
-  const handleOnChangeQuantity = (stringValue: string, quantityAsNumber: number) => {
+  const handleOnChangeQuantity: FormEventHandler<HTMLDivElement> = (event) => {
+    const stringValue = (event.target as HTMLInputElement).value;
+    const quantityAsNumber = parseInt(stringValue, 10);
+
+    // Use stringValue and quantityAsNumber as needed
     // Set the Quantity of product to value of input if value is number
     if (quantityAsNumber >= 0) {
       setQuantity(quantityAsNumber)
@@ -32,17 +36,17 @@ const ProductQuantityStepper: React.FC<ProductQuantityStepperProps> = props => {
       // Therefore, we set it to minOrderQuantity.
       setQuantity(minOrderQuantity)
     }
-  }
+  };
 
   return (
     <QuantityStepper
       clampValueOnBlur={false}
       id="quantity"
-      isDisabled={isOutOfStock}
+      disabled={isOutOfStock}
       max={stockLevel}
       min={minOrderQuantity}
       step={stepQuantity}
-      value={quantity}
+      value={`${quantity}`}
       onBlur={handleOnBlurQuantity}
       onChange={handleOnChangeQuantity}
     />

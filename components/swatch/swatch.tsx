@@ -1,4 +1,6 @@
 import React from 'react'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 import { Box, Img, UseRadioGroupReturn, useRadio } from '@chakra-ui/react'
 import { useRouter } from 'next/navigation'
 

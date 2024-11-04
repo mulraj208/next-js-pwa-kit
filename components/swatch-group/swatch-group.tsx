@@ -1,8 +1,12 @@
 import React from 'react'
 
-import { Flex, HStack, Text, useRadioGroup } from '@chakra-ui/react'
-
-import Swatch from '../swatch'
+import {Flex, HStack} from '@chakra-ui/react'
+import {
+    RadioCardItem,
+    RadioCardLabel,
+    RadioCardRoot,
+} from "@/components/ui/radio-card"
+import Image from 'next/image';
 
 type SwatchGroupProps = {
   name?: string
@@ -13,36 +17,48 @@ type SwatchGroupProps = {
 const SwatchGroup: React.FC<SwatchGroupProps> = (props: SwatchGroupProps) => {
   const { name, values, selectedValue } = props
   const defaultValue = selectedValue?.value || ''
-  const { getRootProps, getRadioProps } = useRadioGroup({ name, defaultValue })
-  const group = getRootProps()
 
   return (
     <Flex direction="column" gap={2}>
-      <Text>
-        {name}
-        {selectedValue?.name ? `: ${selectedValue.name}` : ''}
-      </Text>
+        <RadioCardRoot
+            orientation="horizontal"
+            align="center"
+            justify="center"
+            maxW="lg"
+            name={name}
+            defaultValue={defaultValue}
+        >
+            <RadioCardLabel>
+                {name}
+                {selectedValue?.name ? `: ${selectedValue.name}` : ''}
+            </RadioCardLabel>
+            <HStack align="stretch">
+                {values.map((variationAttributeValue: CommerceSDK.VariationAttributeValue) => {
+                    const { href, name, image, value, orderable } = variationAttributeValue
 
-      <HStack wrap="wrap" {...group} aria-label={name}>
-        {values.map((variationAttributeValue: CommerceSDK.VariationAttributeValue) => {
-          const { href, name, image, value, orderable } = variationAttributeValue
-          let radioProps = getRadioProps({
-            value,
-            'aria-label': name,
-            isDisabled: !orderable
-          })
+                    console.log(href)
 
-          radioProps = { ...radioProps, isChecked: value === defaultValue }
-
-          return (
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-            <Swatch href={href} image={image} key={value} {...radioProps}>
-              {name}
-            </Swatch>
-          )
-        })}
-      </HStack>
+                    return (
+                        <RadioCardItem
+                            label={name}
+                            indicator={false}
+                            key={name}
+                            value={value}
+                            disabled={!orderable}
+                        >
+                            {image ? (
+                                <Image
+                                    alt={image.alt || ''}
+                                    height="40"
+                                    width="40"
+                                    src={image.disBaseLink || image.link}
+                                />
+                            ) : null}
+                        </RadioCardItem>
+                    )
+                })}
+            </HStack>
+        </RadioCardRoot>
     </Flex>
   )
 }

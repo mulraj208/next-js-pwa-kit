@@ -17,7 +17,7 @@ const SearchResults: React.FC<SearchResultsProps> = props => {
   }
 
   return (
-    <Stack alignItems="flex-start" data-testid="sf-suggestion" spacing={3}>
+    <Stack alignItems="flex-start" data-testid="sf-suggestion" gap={3}>
       {suggestions
         ? suggestions.map(suggestion => (
             <ChakraLink as={Link} key={suggestion.id} href={suggestion.link} {...styles.suggestion}>

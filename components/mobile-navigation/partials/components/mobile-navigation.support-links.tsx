@@ -53,7 +53,6 @@ const SupportLinks: React.FC = () => {
 
   return (
     <NestedAccordionMenu
-      allowMultiple
       fontSizes={['md']}
       fontWeights={['400']}
       item={links}

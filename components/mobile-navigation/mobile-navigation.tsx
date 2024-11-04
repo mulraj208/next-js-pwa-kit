@@ -16,7 +16,6 @@ import Link from 'next/link';
 
 import SupportLinks from './partials/components/mobile-navigation.support-links'
 
-import {DISCLOSURES_IDS} from "@/constants";
 import {categoryUrlBuilder} from "@/utils/urls";
 import {usePathname} from "next/navigation";
 import NestedAccordionMenu, {AccordionItemType} from "@/components/nested-accordion";
@@ -46,10 +45,9 @@ type MobileNavigationProps = {
 }
 
 const MobileNavigation: React.FC<MobileNavigationProps> = props => {
-    const {placement, root, onClose: handleClose} = props
+    const {root, onClose: handleClose} = props
     const pathname = usePathname();
     const itemsKey = 'categories'
-    const id = DISCLOSURES_IDS.MOBILE_NAVIGATION
 
     // Close menu when a link is clicked (location changed)
     useEffect(() => {
@@ -74,7 +72,6 @@ const MobileNavigation: React.FC<MobileNavigationProps> = props => {
                         {/* Category Navigation */}
                         {root?.[itemsKey] ? (
                             <NestedAccordionMenu
-                                allowMultiple
                                 fontSizes={FONT_SIZES}
                                 fontWeights={FONT_WEIGHTS}
                                 item={root}

@@ -1,6 +1,4 @@
-import { RadioProps } from '@chakra-ui/react'
-
-const swatchStyles: RadioProps = {
+const swatchStyles = {
   borderRadius: 'md',
   borderWidth: '1px',
   borderColor: 'gray.200',
@@ -22,7 +20,7 @@ const swatchStyles: RadioProps = {
   }
 }
 
-const imageSwatchStyles: RadioProps = {
+const imageSwatchStyles = {
   borderRadius: 'full',
   display: 'inline-flex',
   p: 1,
