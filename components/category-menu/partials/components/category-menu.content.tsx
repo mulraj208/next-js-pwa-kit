@@ -51,7 +51,7 @@ const CategoryMenuContent: React.FC<CategoryMenuContentProps> = props => {
   return (
     <PopoverContent data-testid="popover-menu" {...styles.popoverContent}>
       <PopoverBody ref={popoverBodyRef} onBlur={handleBlur}>
-        <SimpleGrid justifyContent="center" spacing={32} {...gridConfig} role="menu">
+        <SimpleGrid justifyContent="center" gap={32} {...gridConfig} role="menu">
           {categoriesData.map(item => {
             return (
               <LinksList

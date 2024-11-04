@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react'
-import { Box, Divider, HStack, SimpleGrid, Spacer, Text, useBreakpointValue } from '@chakra-ui/react'
+import {Box, Grid, HStack, Spacer, Text, useBreakpointValue} from '@chakra-ui/react'
 import { AccountLinks, CompanyLinks, CustomerSupportLinks, LegalLinks } from './partials/components/footer.links'
 import SocialIcons from './partials/components/footer.social-icons'
 import Subscribe from './partials/components/footer.subscribe'
@@ -16,12 +16,12 @@ const Footer: React.FC = () => {
     <Box as="footer" layerStyle="page-spacer-x" {...styles.container}>
       <Box {...styles.content}>
         <HideOnMobile>
-          <SimpleGrid columns={4} spacing={3}>
+          <Grid templateColumns="repeat(4, 1fr)" gap={3}>
             <CustomerSupportLinks spacing={3} />
             <AccountLinks spacing={3} />
             <CompanyLinks spacing={3} />
             <Subscribe />
-          </SimpleGrid>
+          </Grid>
         </HideOnMobile>
 
         <HideOnDesktop>
@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
           </HStack>
         </HideOnMobile>
 
-        <Divider bg="white" h={0.5} my={8} />
+        {/*/!*<Divider bg="white" h={0.5} my={8} />*!/*/}
 
         {/* Legal Links */}
         <Box maxWidth="container.xl">

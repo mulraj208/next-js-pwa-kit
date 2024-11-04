@@ -12,7 +12,7 @@ import { HEADER_HOVER_DELAY } from '../../category-menu.styles'
 import {usePathname} from "next/navigation";
 import {DISCLOSURES_IDS} from "@/constants";
 import {LinkListVariant} from "@/components/links-list";
-import Popover from "@/components/popover";
+import {PopoverRoot} from "@/components/ui/popover";
 
 type CategoryMenuPopoverProps = {
   listVariant?: LinkListVariant
@@ -33,7 +33,7 @@ const CategoryMenuPopover: React.FC<CategoryMenuPopoverProps> = props => {
   // Here we set up disclosure props manually - so to speak -
   // instead of letting the Popover component do it,
   // because we need these handler functions to control the menu as a whole
-  const { isOpen, onClose: handleClose, onOpen: handleOpen } = useDisclosure()
+  const { open, onClose: handleClose, onOpen: handleOpen } = useDisclosure()
 
   const menuItemRef = useRef<HTMLDivElement>(null)
   const popoverBodyRef = useRef<HTMLDivElement>(null)
@@ -110,17 +110,8 @@ const CategoryMenuPopover: React.FC<CategoryMenuPopoverProps> = props => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Popover
-        isLazy
-        returnFocusOnClose
-        disclosureId={disclosureId}
-        disclosureProps={{ onOpen: handleOpen, onClose: handleClose, isOpen }}
-        gutter={0}
-        placement="bottom"
-        size="full"
-        variant="category_menu"
-      >
-        <CategoryMenuTrigger hasItems={!!items} isOpen={isOpen} item={item} name={name} onBlur={handleBlur} />
+      <PopoverRoot open={open}>
+        <CategoryMenuTrigger hasItems={!!items} isOpen={open} item={item} name={name} onBlur={handleBlur} />
 
         {items ? (
           <CategoryMenuContent
@@ -133,7 +124,7 @@ const CategoryMenuPopover: React.FC<CategoryMenuPopoverProps> = props => {
             onClose={handleClose}
           />
         ) : null}
-      </Popover>
+      </PopoverRoot>
     </Box>
   )
 }

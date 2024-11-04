@@ -52,11 +52,11 @@ const LinksList: React.FC<LinkListProps> = props => {
       ) : null}
 
       {links ? (
-        <List spacing={spacing} style={variant === LINK_LIST_VARIANTS.horizontal ? { display: 'flex', gap: 3 } : {}}>
+        <List.Root gap={spacing} listStyleType="none" style={variant === LINK_LIST_VARIANTS.horizontal ? { display: 'flex', gap: 3, flexDirection: 'row' } : {}}>
           {links.map((link, i) => (
             <LinkListItem colorScheme={colorScheme} key={i} link={link} onLinkClick={handleLinkClick} />
           ))}
-        </List>
+        </List.Root>
       ) : null}
     </Box>
   )

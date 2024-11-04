@@ -1,10 +1,11 @@
 import React from 'react'
 
-import { Link as ChakraLink, PopoverAnchor, Text } from '@chakra-ui/react'
+import { Link as ChakraLink, Text } from '@chakra-ui/react'
 import Link from 'next/link';
 
 import styles from '../../category-menu.styles'
 import {categoryUrlBuilder} from "@/utils/urls";
+import {PopoverTrigger} from "@/components/ui/popover";
 
 type CategoryMenuTriggerProps = {
   item: CommerceSDK.Category
@@ -17,14 +18,12 @@ type CategoryMenuTriggerProps = {
 
 const CategoryMenuTrigger: React.FC<CategoryMenuTriggerProps> = props => {
   const { item, name, hasItems, isOpen, onBlur: handleBlur } = props
-  const nameProp = hasItems ? `${name ? name : ' '} __` : name
 
   return (
     <>
-      <PopoverAnchor>
+      <PopoverTrigger asChild>
         <ChakraLink
           as={Link}
-          name={nameProp}
           role="menuitem"
           href={categoryUrlBuilder(item)}
           {...styles.menuItem}
@@ -35,7 +34,7 @@ const CategoryMenuTrigger: React.FC<CategoryMenuTriggerProps> = props => {
         >
           {name}
         </ChakraLink>
-      </PopoverAnchor>
+      </PopoverTrigger>
 
       {hasItems ? (
         <Text as="span" id="menu-item-hint" {...styles.expandableMenuItemHint}>

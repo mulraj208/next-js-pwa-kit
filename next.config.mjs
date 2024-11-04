@@ -3,7 +3,7 @@ import bundleAnalyzer from '@next/bundle-analyzer'
 
 const nextConfig = {
     experimental: {
-        optimizePackageImports: ["@/components/icons"]
+        optimizePackageImports: ["@chakra-ui/react"]
     },
     async rewrites() {
         return {

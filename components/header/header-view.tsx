@@ -2,7 +2,7 @@
 
 import React, {useContext} from 'react'
 
-import {Box, Link as ChakraLink, Flex, HStack, Heading, IconButton} from '@chakra-ui/react'
+import {Box, Link as ChakraLink, Flex, HStack, Heading} from '@chakra-ui/react'
 import Link from 'next/link'
 
 import CategoryMenu from "@/components/category-menu";
@@ -12,7 +12,7 @@ import {useLazyLoadCategories} from "@/hooks/use-lazy-load-categories";
 import {HideOnDesktop, HideOnMobile} from "@/components/responsive";
 import {flatten} from "@/utils/utils";
 import styles from './header.styles'
-import {MenuIcon} from "@/components/icons";
+import {MenuIcon} from 'lucide-react';
 import MobileNavigation from "@/components/mobile-navigation";
 import {AccordionItemType} from "@/components/nested-accordion";
 import {levelZeroCategoriesQuery} from "@/components/header/header";
@@ -44,17 +44,11 @@ const HeaderView = ({ levelZeroCategoriesQuery }: { levelZeroCategoriesQuery: le
                     <HStack>
                         {/* Mobile Menu Icon */}
                         <HideOnDesktop>
-                            <IconButton
-                                colorScheme="clear"
-                                icon={<MenuIcon boxSize="2rem" color="carminepink.800" />}
-                                mr="2"
-                                aria-label="Menu"
-                                onClick={handleOpen}
-                            />
+                            <MenuIcon width="2rem" height="2rem" color="carminepink.800" aria-label="Menu" onClick={handleOpen} />
                         </HideOnDesktop>
 
                         {/* Logo */}
-                        <ChakraLink as={Link} href={HOME_HREF} variant="noUnderline">
+                        <ChakraLink as={Link} href={HOME_HREF}>
                             <Heading as="h2" color="carminepink.800" fontSize="2rem" size="md">
                                 SYSTEMA
                             </Heading>
@@ -64,13 +58,14 @@ const HeaderView = ({ levelZeroCategoriesQuery }: { levelZeroCategoriesQuery: le
                     {/* Category Menu/List */}
                     <Box flex={1}>
                         <HideOnMobile>
-                            <CategoryMenu listVariant="vertical" maxColumns={4} root={categories?.['root'] as CommerceSDK.Category} />
+                            <CategoryMenu listVariant="vertical" maxColumns={4}
+                                          root={categories?.['root'] as CommerceSDK.Category}/>
                         </HideOnMobile>
                     </Box>
 
                     {/* Search Field */}
                     <Box ml="auto" width={{base: 'full', lg: 60}}>
-                        <Search />
+                        {/*<Search />*/}
                     </Box>
 
                     {/* Login link placeholder
@@ -86,7 +81,7 @@ const HeaderView = ({ levelZeroCategoriesQuery }: { levelZeroCategoriesQuery: le
 
             {/* Sidebar menu for mobile */}
             <HideOnDesktop>
-                <MobileNavigation root={categories?.['root'] as AccordionItemType} onClose={handleClose} />
+                <MobileNavigation root={categories?.['root'] as AccordionItemType} onClose={handleClose}/>
             </HideOnDesktop>
         </Box>
     )

@@ -1,13 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import {
-  Breadcrumb as ChakraBreadcrumb,
-  BreadcrumbItem as ChakraBreadcrumbItem,
-  BreadcrumbLink as ChakraBreadcrumbLink
-} from '@chakra-ui/react'
+  BreadcrumbLink,
+  BreadcrumbRoot,
+} from "@/components/ui/breadcrumb"
 
-import Link from 'next/link'
 import {categoryUrlBuilder} from '@/utils/urls'
-import {ChevronRight} from '@/components/icons'
+import {ChevronRight} from 'lucide-react'
 import {getApiClients} from "@/utils/commerce-api";
 
 type BreadcrumbProps = {
@@ -49,24 +47,13 @@ const Breadcrumbs: React.FC<BreadcrumbProps> = (props) => {
   }, [product])
 
   return (
-      <ChakraBreadcrumb
-          fontSize="sm"
-          minHeight={4}
-          separator={<ChevronRight boxSize={4} color="grey" display="flex" />}
-      >
-        {category?.parentCategoryTree?.map((category) => (
-            <ChakraBreadcrumbItem key={category.id}>
-              <ChakraBreadcrumbLink
-                  as={Link}
-                  py={3}
-                  textDecoration="none"
-                  href={categoryUrlBuilder(category as CommerceSDK.Category)}
-              >
-                {category.name}
-              </ChakraBreadcrumbLink>
-            </ChakraBreadcrumbItem>
-        ))}
-      </ChakraBreadcrumb>
+      <BreadcrumbRoot fontSize="sm" minHeight={4} separator={<ChevronRight width={4} height={4} color="grey" display="flex" />}>
+          {category?.parentCategoryTree?.map((category) => (
+              <BreadcrumbLink key={category.id} href={categoryUrlBuilder(category as CommerceSDK.Category)} py={3} textDecoration="none">
+                  {category.name}
+              </BreadcrumbLink>
+          ))}
+      </BreadcrumbRoot>
   )
 }
 

@@ -6,9 +6,8 @@ import {CommerceApiProvider} from '@salesforce/commerce-sdk-react'
 // @ts-ignore
 import {withReactQuery} from '@salesforce/pwa-kit-react-sdk/ssr/universal/components/with-react-query'
 import config from '@/config/dw'
-import {ChakraProvider} from "@chakra-ui/react";
-import {themeDefault} from '@/theme'
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import { Provider } from "@/components/ui/provider";
 
 export const defaultConfig = {
     clientId: config.CLIENT_ID,
@@ -27,7 +26,7 @@ function QueryProvider({children}: { children: ReactNode }) {
     return (
         <QueryClientProvider client={queryClient}>
             <CommerceApiProvider {...defaultConfig}>
-                <ChakraProvider theme={themeDefault}>{children}</ChakraProvider>
+                <Provider>{children}</Provider>
             </CommerceApiProvider>
         </QueryClientProvider>
     )

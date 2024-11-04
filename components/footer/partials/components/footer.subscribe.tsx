@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Box, Button, Flex, Heading, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, Input, Text } from '@chakra-ui/react'
 
 import styles from '../../footer.styles'
 
@@ -16,22 +16,20 @@ const Subscribe: React.FC = () => {
           Sign up to stay in the loop about the hottest deals
       </Text>
 
-      <Box>
-        <InputGroup>
+      <Flex pos="relative">
           <Input
-            {...styles.subscribeField}
-            aria-label="Email"
-            placeholder="you@email.com"
-            type="email"
+              {...styles.subscribeField}
+              aria-label="Email"
+              placeholder="you@email.com"
+              type="email"
           />
 
-          <InputRightElement w="unset">
-            <Button colorScheme="gray" maxHeight="full" variant="outline">
-                Sign Up
-            </Button>
-          </InputRightElement>
-        </InputGroup>
-      </Box>
+          <Box>
+              <Button color="white" maxHeight="full" variant="outline">
+                  Sign Up
+              </Button>
+          </Box>
+      </Flex>
     </Flex>
   )
 }

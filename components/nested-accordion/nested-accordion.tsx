@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons'
+import { ChevronDownIcon, ChevronRightIcon } from 'lucide-react'
 import {
   Accordion,
   AccordionButton,
@@ -63,9 +63,9 @@ const NestedAccordionMenu: React.FC<NestedAccordionMenuProps> = props => {
                         >
                           {/* Replace default expanded/collapsed icons. */}
                           {isExpanded ? (
-                            <ChevronDownIcon color="gray" h="auto" mr={2} w={6} />
+                            <ChevronDownIcon color="gray" height="auto" width={6} />
                           ) : (
-                            <ChevronRightIcon color="gray" h="auto" mr={2} w={6} />
+                            <ChevronRightIcon color="gray" height="auto" width={6} />
                           )}
 
                           <Text

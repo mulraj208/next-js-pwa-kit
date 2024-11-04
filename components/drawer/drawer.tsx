@@ -2,6 +2,14 @@ import React from 'react'
 
 import { Drawer as ChakraDrawer, DrawerProps as ChakraDrawerProps, UseDisclosureProps } from '@chakra-ui/react'
 import {useDisclosureTracker} from "@/contexts/disclosure.tracker.context";
+import {
+  DrawerBackdrop, DrawerBody,
+  DrawerCloseTrigger,
+  DrawerContent, DrawerFooter,
+  DrawerHeader,
+  DrawerRoot, DrawerTitle,
+  DrawerTrigger
+} from "@/components/ui/drawer";
 
 interface DrawerProps extends Omit<ChakraDrawerProps, 'isOpen' | 'onClose'> {
   disclosureId: string
@@ -14,7 +22,19 @@ const Drawer: React.FC<DrawerProps> = props => {
 
   return (
     <ChakraDrawer isOpen={isOpen} onClose={handleClose} {...drawerProps}>
-      {children}
+
+      <DrawerRoot>
+        <DrawerBackdrop />
+        <DrawerTrigger />
+        <DrawerContent>
+          <DrawerCloseTrigger />
+          <DrawerHeader>
+            <DrawerTitle />
+          </DrawerHeader>
+          <DrawerBody />
+          <DrawerFooter />
+        </DrawerContent>
+      </DrawerRoot>
     </ChakraDrawer>
   )
 }

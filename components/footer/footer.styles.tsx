@@ -1,13 +1,14 @@
-import { BoxProps, FlexProps, HeadingProps, IconProps, InputProps } from '@chakra-ui/react'
+import { BoxProps, FlexProps, HeadingProps, InputProps } from '@chakra-ui/react'
 
 const container: BoxProps = {
   w: 'full',
   bg: 'gray.900',
-  py: { base: 8, lg: 10 }
+  py: { base: 8, lg: 10 },
+  px: { base: 3, lg: 8 }
 }
 
 const content: BoxProps = {
-  maxWidth: 'container.xl',
+  maxWidth: '75rem',
   marginLeft: 'auto',
   marginRight: 'auto',
   color: 'white'
@@ -36,10 +37,10 @@ const socialIconsContainer: FlexProps = {
   gap: 8
 }
 
-const socialIcon: IconProps = {
+const socialIcon = {
   cursor: 'pointer',
-  w: 6,
-  h: 6
+  width: 24,
+  height: 24
 }
 
 const linksHeading: HeadingProps = {

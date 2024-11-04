@@ -2,7 +2,7 @@
 
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 
-import { SearchIcon } from '@chakra-ui/icons'
+import { SearchIcon } from 'lucide-react'
 import {
   Button,
   Center,

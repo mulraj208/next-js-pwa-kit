@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ExternalLinkIcon } from '@chakra-ui/icons'
+import { ExternalLinkIcon } from 'lucide-react'
 import { Flex } from '@chakra-ui/react'
 
 import styles from '../../footer.styles'
