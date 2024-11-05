@@ -1,50 +1,55 @@
 import React from 'react'
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
-import { Box, Img, UseRadioGroupReturn, useRadio } from '@chakra-ui/react'
-import { useRouter } from 'next/navigation'
 
-import styles from './swatch.styles'
+import {RadioCardItem} from "@/components/ui/radio-card";
+import Image from "next/image";
+import {useRouter} from "next/navigation";
 
-interface SwatchProps extends ReturnType<UseRadioGroupReturn['getRadioProps']> {
-    children: React.ReactNode
-    href: string
-    image?: {
-        alt: string
-        disBaseLink?: string
-        link?: string
-    }
+interface SwatchProps {
+    variationAttributeValue: CommerceSDK.VariationAttributeValue
 }
 
 const Swatch = (props: SwatchProps) => {
-    const { href, image } = props
-    const { getInputProps, getRadioProps } = useRadio(props)
-    const router = useRouter()  // Use Next.js router for navigation
-    const radioProps = getRadioProps()
-    const input = getInputProps()
+    const {variationAttributeValue} = props;
+    const {href, name, image, value, orderable} = variationAttributeValue
+    const router = useRouter();
 
-    const handleClick = () => {
-        router.replace(href)  // Replaces useHistory with Next.js navigation
+    const handleOnChange = () => {
+        router.replace(href)
+    }
+
+    const styles = {
+        h: 14,
+        w: 14,
+        ...(image && {
+            alignItems: 'flex-start',
+            border: 'none',
+            boxShadow: 'none',
+            '& .chakra-radio-card__itemText': {
+                display: 'none'
+            }
+        })
     }
 
     return (
-        <Box aria-label={props['aria-label']} as="label">
-            <input {...input} onClick={handleClick} />
-
-            <Box {...radioProps} {...(image ? styles.imageSwatchStyles : styles.swatchStyles)}>
-                {image ? (
-                    <Img
-                        alt={image.alt}
-                        aspectRatio={1}
-                        borderRadius="full"
-                        height="100%"
-                        src={image.disBaseLink || image.link}
-                    />
-                ) : (
-                    props.children
-                )}
-            </Box>
-        </Box>
+        <RadioCardItem
+            label={name}
+            indicator={false}
+            key={name}
+            value={value}
+            disabled={!orderable}
+            css={styles}
+            onChange={handleOnChange}
+            icon={image ? (
+                <Image
+                    className="swatch-image"
+                    alt={image.alt || ''}
+                    height="34"
+                    width="34"
+                    src={image.disBaseLink || image.link}
+                    style={{ width: '34px', height: '34px', borderRadius: '9999px' }}
+                />
+            ) : undefined}
+        />
     )
 }
 
