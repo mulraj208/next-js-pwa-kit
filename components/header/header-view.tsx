@@ -16,7 +16,7 @@ import {MenuIcon} from 'lucide-react';
 import MobileNavigation from "@/components/mobile-navigation";
 import {AccordionItemType} from "@/components/nested-accordion";
 import {levelZeroCategoriesQuery} from "@/components/header/header";
-import Search from "@/components/search";
+// import Search from "@/components/search";
 
 const HeaderView = ({ levelZeroCategoriesQuery }: { levelZeroCategoriesQuery: levelZeroCategoriesQuery }) => {
     // Categories
@@ -65,7 +65,7 @@ const HeaderView = ({ levelZeroCategoriesQuery }: { levelZeroCategoriesQuery: le
 
                     {/* Search Field */}
                     <Box ml="auto" width={{base: 'full', lg: 60}}>
-                        <Search />
+                        {/*<Search />*/}
                     </Box>
 
                     {/* Login link placeholder
