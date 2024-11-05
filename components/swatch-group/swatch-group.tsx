@@ -2,12 +2,9 @@ import React from 'react';
 
 import {Flex, HStack} from '@chakra-ui/react';
 import {
-    RadioCardItem,
     RadioCardLabel,
     RadioCardRoot,
 } from "@/components/ui/radio-card";
-import Image from 'next/image';
-import {useRouter} from "next/navigation";
 import Swatch from "@/components/swatch";
 
 type SwatchGroupProps = {
