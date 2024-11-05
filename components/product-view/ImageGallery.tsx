@@ -66,7 +66,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = props => {
                 </Box>
             ) : null}
 
-            <ListRoot display="flex" flexWrap="wrap">
+            <ListRoot display="flex" flexWrap="wrap" flexDirection="row" listStyleType="none">
                 {thumbnailImages.map((image, index) => {
                     const selected = index === selectedIndex
                     return (
@@ -76,14 +76,14 @@ const ImageGallery: React.FC<ImageGalleryProps> = props => {
                                 borderColor={`${selected ? 'black' : ''}`}
                                 borderWidth={`${selected ? '1px' : 0}`}
                                 colorScheme=""
-                                w="full"
+                                h="full"
+                                borderRadius={0}
+                                bg="none"
                                 onClick={() => handleThumbnailClick(index)}
                                 onKeyUp={(e: React.KeyboardEvent<HTMLButtonElement>) => handleThumbnailEnter(index, e)}
                             >
-                                <AspectRatio ratio={1}>
-                                    <Image alt={image.alt || ''} loading={loadingStrategy} height={100} width={100}
-                                         src={image.disBaseLink || image.link}/>
-                                </AspectRatio>
+                                <Image alt={image.alt || ''} loading={loadingStrategy} height={94} width={94}
+                                       src={image.disBaseLink || image.link}/>
                             </Button>
                         </ListItem>
                     )
