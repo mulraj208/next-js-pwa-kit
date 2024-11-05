@@ -258,7 +258,7 @@ const Search: React.FC = () => {
             <HStack>
               <Flex pos="relative">
                 <Box pos="absolute" top={0} left={0} h="full" mr="2rem" pointerEvents="none" w="2rem">
-                  <SearchIcon color="red.900" />
+                  <SearchIcon color="red.600" />
                 </Box>
 
                 <SearchInput

@@ -55,7 +55,7 @@ const NestedAccordionMenu: React.FC<NestedAccordionMenuProps> = props => {
                         <Button
                             py={2}
                             _hover={{
-                              color: 'red.900'
+                              color: 'red.600'
                             }}
                         >
                           {/* Replace default expanded/collapsed icons. */}

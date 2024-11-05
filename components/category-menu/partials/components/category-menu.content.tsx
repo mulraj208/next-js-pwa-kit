@@ -1,10 +1,11 @@
 import React from 'react'
 
-import { PopoverBody, PopoverContent, SimpleGrid, SimpleGridProps } from '@chakra-ui/react'
+import { Grid, GridProps } from '@chakra-ui/react'
 
 import styles from '../../category-menu.styles'
 import {categoryUrlBuilder} from "@/utils/urls";
 import LinksList, {LinkListVariant} from "@/components/links-list";
+import {PopoverContent, PopoverBody} from "@/components/ui/popover";
 
 type CategoryMenuContentProps = {
   listVariant?: LinkListVariant
@@ -43,7 +44,7 @@ const CategoryMenuContent: React.FC<CategoryMenuContentProps> = props => {
     }
   })
 
-  const gridConfig: SimpleGridProps = {
+  const gridConfig: GridProps = {
     gridTemplateColumns: `repeat(${items.length > maxColumns ? maxColumns : items.length}, minmax(0, 20%))`,
     rowGap: 8
   }
@@ -51,11 +52,11 @@ const CategoryMenuContent: React.FC<CategoryMenuContentProps> = props => {
   return (
     <PopoverContent data-testid="popover-menu" {...styles.popoverContent}>
       <PopoverBody ref={popoverBodyRef} onBlur={handleBlur}>
-        <SimpleGrid justifyContent="center" gap={32} {...gridConfig} role="menu">
+        <Grid justifyContent="center" gap={32} {...gridConfig} role="menu">
           {categoriesData.map(item => {
             return (
               <LinksList
-                colorScheme="red.900"
+                colorScheme="red.600"
                 heading={item.heading}
                 key={item.id}
                 links={item.links}
@@ -65,7 +66,7 @@ const CategoryMenuContent: React.FC<CategoryMenuContentProps> = props => {
               />
             )
           })}
-        </SimpleGrid>
+        </Grid>
       </PopoverBody>
     </PopoverContent>
   )

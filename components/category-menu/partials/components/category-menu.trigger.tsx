@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {Box, Link as ChakraLink, Text} from '@chakra-ui/react'
+import {Link as ChakraLink, Text} from '@chakra-ui/react'
 import Link from 'next/link';
 
 import styles from '../../category-menu.styles'
@@ -20,8 +20,8 @@ const CategoryMenuTrigger: React.FC<CategoryMenuTriggerProps> = props => {
   const { item, name, hasItems, isOpen, onBlur: handleBlur } = props
 
   return (
-      <PopoverTrigger asChild>
-        <Box>
+      <PopoverTrigger display="flex" h="full">
+        <>
             <ChakraLink
                 as={Link}
                 role="menuitem"
@@ -40,7 +40,7 @@ const CategoryMenuTrigger: React.FC<CategoryMenuTriggerProps> = props => {
                     Press Space to Expand
                 </Text>
             ) : null}
-        </Box>
+        </>
       </PopoverTrigger>
   )
 }

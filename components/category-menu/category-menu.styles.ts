@@ -22,7 +22,8 @@ const popoverContent: PopoverContentProps = {
   flexDirection: 'row',
   justifyContent: 'center',
   bg: 'white',
-  cursor: 'default'
+  cursor: 'default',
+  w: 'full'
 }
 
 const menu: StackProps = {
@@ -60,7 +61,7 @@ const menuItemActive: LinkProps = {
     bottom: 0,
     width: '100%',
     height: '1',
-    bg: 'red.900'
+    bg: 'red.600'
   }
 }
 
@@ -79,7 +80,7 @@ const expandableMenuItem: LinkProps = {
   },
   _hover: {
     _before: {
-      bg: 'red.900',
+      bg: 'red.600',
       transform: 'translateX(0)'
     }
   }

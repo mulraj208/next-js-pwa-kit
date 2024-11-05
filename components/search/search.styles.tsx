@@ -10,7 +10,7 @@ const input: InputProps = {
   pl: 7,
   pr: 2,
   _focusWithin: {
-    borderColor: 'red.900'
+    borderColor: 'red.600'
   }
 }
 
@@ -19,7 +19,7 @@ const spinner: SpinnerProps = {
   h: 14,
   my: 10,
   opacity: 0.85,
-  color: 'red.900',
+  color: 'red.600',
   zIndex: 5
 }
 
