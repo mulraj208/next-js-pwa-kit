@@ -46,12 +46,10 @@ export default function ProductDetail(props: { productData: CommerceSDK.Product$
         return <h2>No Product Data found</h2>
     }
 
-    console.log(productData);
-
     return (
         <html lang="en" suppressHydrationWarning>
             <body>
-                <QueryProvider locals={{}}>
+                <QueryProvider>
                     <HeaderView levelZeroCategoriesQuery={levelZeroCategoriesQuery} />
                     <ProductView productData={productData} />
                     <Footer/>

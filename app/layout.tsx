@@ -14,7 +14,7 @@ export default function RootLayout({children}: Readonly<{ children: ReactNode }>
     return (
         <html lang="en" suppressHydrationWarning>
             <body>
-                <QueryProvider locals={{}}>
+                <QueryProvider>
                     <Header/>
                     {children}
                     <Footer/>
