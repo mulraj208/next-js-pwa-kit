@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useId, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import { Box, useDisclosure } from '@chakra-ui/react'
 
@@ -10,7 +10,7 @@ import CategoryMenuTrigger from './category-menu.trigger'
 // Delays the opening/closing of menu items (milliseconds)
 import { HEADER_HOVER_DELAY } from '../../category-menu.styles'
 import {usePathname} from "next/navigation";
-import {DISCLOSURES_IDS} from "@/constants";
+// import {DISCLOSURES_IDS} from "@/constants";
 import {LinkListVariant} from "@/components/links-list";
 import {PopoverRoot} from "@/components/ui/popover";
 
@@ -29,8 +29,8 @@ const CategoryMenuPopover: React.FC<CategoryMenuPopoverProps> = props => {
 
   // Setting up disclosure for individual menu itmes
   // giving them a unique id with a prefix
-  const disclosureId = `${DISCLOSURES_IDS.DESKTOP_NAVIGATION} ${useId()}`
-  console.log(disclosureId);
+  // const disclosureId = `${DISCLOSURES_IDS.DESKTOP_NAVIGATION} ${useId()}`
+  // console.log(disclosureId);
   // Here we set up disclosure props manually - so to speak -
   // instead of letting the Popover component do it,
   // because we need these handler functions to control the menu as a whole
