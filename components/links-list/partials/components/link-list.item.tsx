@@ -21,6 +21,7 @@ const LinkListItem: React.FC<LinkListItemProps> = props => {
         as={NextLink}
         href={link.href}
         onClick={handleLinkClick}
+        color="white"
       >
         {link.text}
       </ChakraLink>
