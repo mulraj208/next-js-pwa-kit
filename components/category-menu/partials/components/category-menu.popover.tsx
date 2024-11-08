@@ -30,7 +30,6 @@ const CategoryMenuPopover: React.FC<CategoryMenuPopoverProps> = props => {
   // Setting up disclosure for individual menu itmes
   // giving them a unique id with a prefix
   // const disclosureId = `${DISCLOSURES_IDS.DESKTOP_NAVIGATION} ${useId()}`
-  // console.log(disclosureId);
   // Here we set up disclosure props manually - so to speak -
   // instead of letting the Popover component do it,
   // because we need these handler functions to control the menu as a whole
