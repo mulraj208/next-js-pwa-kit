@@ -8,7 +8,9 @@ export async function GET(request: NextRequest) {
     const {shopperProducts} = await getApiClients();
     // Retrieve the query string
     const searchParams = request.nextUrl.searchParams;
-    const productId = searchParams.get('productId')
+    const productId = searchParams.get('productId');
+
+    console.log('asdfasd', searchParams)
 
     // If required parameters are missing, return an error response
     if (!productId) {
@@ -21,7 +23,8 @@ export async function GET(request: NextRequest) {
     const data = await shopperProducts.getProduct({
         parameters: {
             id: productId,
-            allImages: true
+            allImages: true,
+            ...searchParams
         }
     });
 
