@@ -11,7 +11,7 @@ export const useCategoryBulk = (
         return {
             queryKey: [{ id, levels: 2 }],
             queryFn: async () => {
-                const res = await fetch(`/api/commerce-sdk-react?id=${id}&levels=2`);
+                const res = await fetch(`/api/commerce-sdk-react/category?id=${id}&levels=2`);
                 return res.json();
             },
             ...queryOptions,

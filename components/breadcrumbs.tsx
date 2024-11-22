@@ -16,7 +16,7 @@ type BreadcrumbProps = {
 const Breadcrumbs: React.FC<BreadcrumbProps> = (props) => {
   const { product } = props
   const { data: categories, isLoading } = useQuery<{ data: CommerceSDK.Category | null }>(['category', product?.primaryCategoryId], async () => {
-    const res = await fetch(`/api/commerce-sdk-react?id=${product?.primaryCategoryId}&levels=1`);
+    const res = await fetch(`/api/commerce-sdk-react/category?id=${product?.primaryCategoryId}&levels=1`);
     return res.json();
   }, { enabled: !!product?.primaryCategoryId });
 
