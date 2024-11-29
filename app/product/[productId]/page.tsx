@@ -1,3 +1,5 @@
+'use cache';
+
 import React from 'react';
 import ProductView from "@/app/product/[productId]/product-view";
 import {fetchProductData} from "@/utils/fetch-product-data";
