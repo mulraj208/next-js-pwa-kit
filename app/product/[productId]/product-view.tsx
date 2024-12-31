@@ -35,7 +35,7 @@ export default function ProductView(props: ProductViewProps) {
 
     return (
         <Flex bg="blackAlpha.50" direction={{base: 'column', lg: 'row'}} gap={8} p={8} justify="center">
-            <Box h="auto" w="30rem">
+            <Box h="auto" w={{ md: "30rem" }}>
                 {product ? (
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore
